@@ -9,6 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:context=".MovieDetailsFragment">
 
         <ImageView
@@ -106,7 +107,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
+                            android:padding="5dp"
                             android:text="1h 57min"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
@@ -129,9 +130,9 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:padding="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
                             android:text="English"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
@@ -156,7 +157,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
+                            android:padding="5dp"
                             android:text="PG-13"
                             android:textColor="@color/black"
                             android:textSize="14sp" />

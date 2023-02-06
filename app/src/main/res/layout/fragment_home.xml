@@ -17,7 +17,8 @@
             android:layout_marginStart="15dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_drawer"/>
+            android:src="@drawable/ic_drawer"
+            android:onClick="openCloseNavigationDrawer"/>
 
         <TextView
             android:id="@+id/tv_title"
@@ -71,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:text="See more"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:fontFamily="serif"/>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -109,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:text="See more"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:fontFamily="serif"/>
 
                 <androidx.recyclerview.widget.RecyclerView
