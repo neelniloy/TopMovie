@@ -1,6 +1,7 @@
 package com.bdjobsniloy.movieapp.network
 
 import com.bdjobsniloy.movieapp.model.NowShowing
+import com.bdjobsniloy.movieapp.model.Popular
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -17,6 +18,9 @@ val retrofit = Retrofit.Builder()
 interface MovieApi {
     @GET()
     suspend fun getNowShowing(@Url endUrl: String): NowShowing
+
+    @GET()
+    suspend fun getPopularMovie(@Url endUrl: String): Popular
 
 }
 
