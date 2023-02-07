@@ -85,6 +85,14 @@
                     tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:orientation="horizontal"/>
 
+                <ProgressBar
+                    android:layout_margin="25dp"
+                    android:id="@+id/mProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible" />
+
             </RelativeLayout>
 
             <RelativeLayout
