@@ -15,7 +15,8 @@
             app:destination="@id/movieDetailsFragment" />
         <action
             android:id="@+id/action_homeFragment_to_bookmarksFragment"
-            app:destination="@id/bookmarksFragment" />
+            app:destination="@id/bookmarksFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
@@ -30,5 +31,9 @@
         <action
             android:id="@+id/action_bookmarksFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
+        <action
+            android:id="@+id/action_bookmarksFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>

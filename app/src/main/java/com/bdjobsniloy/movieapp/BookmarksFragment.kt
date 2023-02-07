@@ -19,7 +19,7 @@ class BookmarksFragment : Fragment() {
         binding =  FragmentBookmarksBinding.inflate(inflater, container, false)
 
         binding.drawerIcon.setOnClickListener{
-            (activity as MainActivity).openCloseNavigationDrawer(it)
+            (activity as MainActivity).openCloseNavigationDrawer()
         }
 
         return binding.root
