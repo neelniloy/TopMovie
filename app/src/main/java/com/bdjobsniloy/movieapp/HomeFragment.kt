@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2.ScrollState
 import com.bdjobsniloy.movieapp.adapter.NowShowingAdapter
 import com.bdjobsniloy.movieapp.adapter.PopularAdapter
 import com.bdjobsniloy.movieapp.databinding.FragmentHomeBinding
@@ -43,6 +44,9 @@ class HomeFragment : Fragment() {
             binding.itemNowShowing.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment,args = bundleOf("movie_id" to show.id))
             }
+            binding.cardItem.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment,args = bundleOf("movie_id" to show.id))
+            }
 
         }
 
@@ -73,6 +77,13 @@ class HomeFragment : Fragment() {
         val popularAdapter = PopularAdapter {binding,popular,position->
 
             binding.itemPopular.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment,args = bundleOf("movie_id" to popular.id))
+            }
+
+            binding.itemPopular.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment,args = bundleOf("movie_id" to popular.id))
+            }
+            binding.cardItem.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment,args = bundleOf("movie_id" to popular.id))
             }
 

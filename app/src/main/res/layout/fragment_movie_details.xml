@@ -32,15 +32,17 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:src="@drawable/ic_bookmark_no" />
 
             <LinearLayout
+                android:id="@+id/movie_details_layout"
                 android:layout_toStartOf="@+id/check_bookmark"
                 android:layout_marginStart="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
@@ -80,9 +82,9 @@
 
                 <LinearLayout
                     android:id="@+id/genre"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                    android:orientation="horizontal">
 
 
@@ -91,7 +93,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -104,7 +106,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
                             android:text="Length"
                             android:textColor="#555"
                             android:textSize="14sp" />
@@ -113,7 +114,6 @@
                             android:id="@+id/movie_length"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="5dp"
                             android:text="Loading..."
                             android:textColor="@color/black"
                             android:textSize="16sp" />
@@ -130,14 +130,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
                             android:text="Language"
                             android:textColor="#555"
                             android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/movie_language"
-                            android:padding="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Loading..."
@@ -156,7 +154,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
                             android:text="Rating"
                             android:textColor="#555"
                             android:textSize="14sp" />
@@ -164,7 +161,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="5dp"
                             android:text="PG-13"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
@@ -173,35 +169,32 @@
 
                 </LinearLayout>
 
+            </LinearLayout>
 
-                <LinearLayout
+            <LinearLayout
+                android:layout_below="@+id/movie_details_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="vertical">
+                    android:text="Description"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:fontFamily="serif"
+                    android:textStyle="bold"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="Description"
-                        android:textColor="@color/black"
-                        android:textSize="22sp"
-                        android:fontFamily="serif"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/movie_des"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="Loading..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-
+                <TextView
+                    android:layout_marginTop="2dp"
+                    android:id="@+id/movie_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loading..."
+                    android:textColor="#555"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

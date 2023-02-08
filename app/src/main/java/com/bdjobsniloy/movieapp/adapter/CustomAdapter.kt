@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bdjobsniloy.movieapp.R
 import com.bumptech.glide.Glide
+import kotlin.math.roundToInt
 
 @BindingAdapter("app:setImageUrl")
 fun setImageUrl(imageView: ImageView, url: String?) {
@@ -18,5 +19,5 @@ fun setImageUrl(imageView: ImageView, url: String?) {
 
 @BindingAdapter("app:setRating")
 fun setRating(tv: TextView, rate: Number) {
-    tv.text = "${rate}/10 IMDb"
+    tv.text = "${"%.1f".format(rate.toFloat())}/10 IMDb"
 }

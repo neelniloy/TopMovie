@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.view.marginEnd
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bdjobsniloy.movieapp.databinding.FragmentMovieDetailsBinding
 import com.bdjobsniloy.movieapp.model.NowShowing
 import com.bdjobsniloy.movieapp.viewmodels.MovieViewModel
 import com.bumptech.glide.Glide
+import kotlin.math.roundToInt
 
 
 class MovieDetailsFragment : Fragment() {
@@ -46,16 +49,25 @@ class MovieDetailsFragment : Fragment() {
 
 
             movie.spoken_languages.forEach {
-                binding.movieLanguage.text = it.name
+                if (it.name.isNotEmpty()){
+                    binding.movieLanguage.text = it.name
+                    return@forEach
+                }
             }
 
-            binding.rating.text = "${movie.vote_average}/10 IMDb"
+            binding.rating.text = "${"%.1f".format(movie.vote_average.toFloat())}/10 IMDb"
 
 
             binding.genre.removeAllViews()
             movie.genres.forEach {
                 val dynamicTextview = TextView(requireActivity())
                 dynamicTextview.text = it.name
+                dynamicTextview.setBackgroundResource(R.drawable.genre_back)
+
+                val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT)
+                params.setMargins(0, 0, 10, 0)
+                dynamicTextview.layoutParams = params
+
                 binding.genre.addView(dynamicTextview)
 
             }
@@ -65,8 +77,10 @@ class MovieDetailsFragment : Fragment() {
 
             binding.movieLength.text = "$hour h $minutes min"
 
-
         }
+
+
+
 
 
         return binding.root
