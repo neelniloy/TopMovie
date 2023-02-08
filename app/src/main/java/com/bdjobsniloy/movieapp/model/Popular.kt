@@ -24,7 +24,7 @@ data class Popular(
         @SerializedName("genre_ids")
         val genre_ids: List<Int>,
         @SerializedName("id")
-        val id: Long,
+        val id: Int,
         @SerializedName("original_title")
         val original_title: String,
         @SerializedName("original_language")

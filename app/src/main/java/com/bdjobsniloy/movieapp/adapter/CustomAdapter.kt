@@ -10,8 +10,8 @@ import com.bumptech.glide.Glide
 fun setImageUrl(imageView: ImageView, url: String?) {
     url?.let {
         Glide.with(imageView.context)
-            .load("https://api.themoviedb.org$url")
-            .placeholder(R.drawable.movie_placeholder)
+            .load("https://image.tmdb.org/t/p/w300$url")
+            .placeholder(R.drawable.loading)
             .into(imageView)
     }
 }

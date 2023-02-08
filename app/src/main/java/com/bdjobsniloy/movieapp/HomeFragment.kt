@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         //Now Showing
         val adapter = NowShowingAdapter {binding,show,position->
 
-            binding.cardNowShowing.setOnClickListener {
+            binding.itemNowShowing.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment,args = bundleOf("movie_id" to show.id))
             }
 
@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
         //Now Showing
         val popularAdapter = PopularAdapter {binding,popular,position->
 
-            binding.cardPopular.setOnClickListener {
+            binding.itemPopular.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment,args = bundleOf("movie_id" to popular.id))
             }
 

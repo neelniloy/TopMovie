@@ -1,5 +1,6 @@
 package com.bdjobsniloy.movieapp.repos
 
+import com.bdjobsniloy.movieapp.model.Movie
 import com.bdjobsniloy.movieapp.model.NowShowing
 import com.bdjobsniloy.movieapp.model.Popular
 import com.bdjobsniloy.movieapp.network.NetworkService
@@ -15,4 +16,10 @@ class MovieRepository {
         val endUrl = "popular?api_key=${movie_api_key}&language=en-US&page=${page}"
         return NetworkService.movieApi.getPopularMovie(endUrl)
     }
+
+    suspend fun fetchMovie(movie_id: Int): Movie {
+        val endUrl = "$movie_id?api_key=${movie_api_key}&language=en-US"
+        return NetworkService.movieApi.getMovie(endUrl)
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.bdjobsniloy.movieapp.network
 
+import com.bdjobsniloy.movieapp.model.Movie
 import com.bdjobsniloy.movieapp.model.NowShowing
 import com.bdjobsniloy.movieapp.model.Popular
 import retrofit2.Retrofit
@@ -8,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Url
 
 const val base_url = "https://api.themoviedb.org/3/movie/"
-const val movie_api_key = "19c1c2d504f8ac3c45453893ebb0e54d"
+const val movie_api_key = "2bd6abca42954ca4fce07eedac57c3d1"
 
 val retrofit = Retrofit.Builder()
     .baseUrl(base_url)
@@ -21,6 +22,9 @@ interface MovieApi {
 
     @GET()
     suspend fun getPopularMovie(@Url endUrl: String): Popular
+
+    @GET()
+    suspend fun getMovie(@Url endUrl: String): Movie
 
 }
 

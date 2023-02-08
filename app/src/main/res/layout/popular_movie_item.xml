@@ -10,6 +10,7 @@
     </data>
 
     <RelativeLayout
+        android:id="@+id/item_popular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -30,7 +31,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?selectableItemBackground"
-                app:cardCornerRadius="4dp"
+                app:cardCornerRadius="12dp"
                 app:cardElevation="4dp">
 
                 <ImageView
@@ -38,7 +39,8 @@
                     android:layout_height="150dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-                    android:src="@drawable/movie_placeholder" />
+                    app:setImageUrl="@{popular.poster_path}"
+                    android:src="@drawable/loading" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -73,6 +75,7 @@
                         android:src="@drawable/ic_star" />
 
                     <TextView
+                        android:layout_marginTop="2dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
