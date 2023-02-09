@@ -8,11 +8,11 @@ import androidx.room.PrimaryKey
 data class Bookmark(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "bookmark_id")
-    var bookmark_id: Long = 0,
-    var id: Long = 0,
+    var bookmark_id: Int = 0,
+    var id: Int = 0,
     var title: String,
     var rating: Float,
     var url: String,
     var genre: String,
-    var runtime: Long,
+    var runtime: String,
 )

@@ -15,5 +15,8 @@ interface BookmarkDao {
     suspend fun deleteBookmark(bookmark: Bookmark)
 
     @Query("select * from tbl_bookmark where id = :id")
-    suspend fun getMovieById(id: String) : Bookmark?
+    suspend fun getMovieById(id: Int) : Bookmark?
+
+    @Query("delete from tbl_bookmark where id = :movieId")
+    suspend fun delete(movieId: Int)
 }
