@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.bdjobsniloy.movieapp.entities.Bookmark
+import com.bdjobsniloy.movieapp.entities.Genre
 
 @Dao
 interface BookmarkDao {
@@ -19,4 +20,9 @@ interface BookmarkDao {
 
     @Query("delete from tbl_bookmark where id = :movieId")
     suspend fun delete(movieId: Int)
+
+    @Query("select * from tbl_bookmark")
+    suspend fun getMovieList():List<Bookmark>
+
+
 }

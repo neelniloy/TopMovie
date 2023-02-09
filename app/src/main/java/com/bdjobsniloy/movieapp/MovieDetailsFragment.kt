@@ -79,7 +79,7 @@ class MovieDetailsFragment : Fragment() {
                 val dynamicTextview = TextView(requireActivity())
                 dynamicTextview.text = it.name
                 dynamicTextview.setBackgroundResource(R.drawable.genre_back)
-                dynamicTextview.textSize = 13.0F
+                dynamicTextview.textSize = 11.0F
                 dynamicTextview.setTextColor(Color.parseColor("#5A6CCF"))
 
                 val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT)

@@ -8,12 +8,14 @@ import androidx.lifecycle.viewModelScope
 import com.bdjobsniloy.movieapp.db.MovieDB
 import com.bdjobsniloy.movieapp.entities.Bookmark
 import com.bdjobsniloy.movieapp.model.Movie
+import com.bdjobsniloy.movieapp.model.Popular
 import kotlinx.coroutines.launch
 
 class BookmarkViewModel(application: Application):AndroidViewModel(application) {
     private val bookmarkDao = MovieDB.getDB(application).bookmarkDao()
     var bookmarkModel: Bookmark? = null
     val bookmarkExitsLD: MutableLiveData<Boolean> = MutableLiveData()
+    val movieLD: MutableLiveData<List<Bookmark>> = MutableLiveData()
 
     fun addToBookmark(bookmark: Bookmark, callback:(String,Int) -> Unit) {
         viewModelScope.launch {
@@ -44,4 +46,10 @@ class BookmarkViewModel(application: Application):AndroidViewModel(application) 
         }
     }
 
+    fun getMovieList(): MutableLiveData<List<Bookmark>>{
+        viewModelScope.launch {
+            movieLD.postValue(bookmarkDao.getMovieList())
+        }
+        return movieLD
+    }
 }

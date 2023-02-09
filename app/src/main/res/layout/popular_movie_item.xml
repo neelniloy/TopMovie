@@ -46,27 +46,26 @@
 
 
             <LinearLayout
-                android:layout_marginStart="5dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Movie Name"
                     android:text="@{popular.title}"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="Movie Name" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:gravity="center">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -75,26 +74,30 @@
                         android:src="@drawable/ic_star" />
 
                     <TextView
-                        android:layout_marginTop="2dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        tools:text="9.1/10 IMDb"
-                        app:setRating="@{popular.vote_average}"
+                        android:layout_marginTop="2dp"
                         android:textColor="#555"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        app:setRating="@{popular.vote_average}"
+                        tools:text="9.1/10 IMDb" />
 
                 </LinearLayout>
 
-                <TextView
-
-                    android:layout_width="wrap_content"
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:background="@drawable/genre_back"
-                    android:text="Action"
-                    android:textColor="#5A6CCF"
-                    android:textSize="12sp" />
+                    android:scrollbars="none"
+                    android:layout_marginTop="5dp">
+
+                    <LinearLayout
+                        android:id="@+id/genre_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"/>
+
+                </HorizontalScrollView>
 
                 <LinearLayout
                     android:layout_width="wrap_content"

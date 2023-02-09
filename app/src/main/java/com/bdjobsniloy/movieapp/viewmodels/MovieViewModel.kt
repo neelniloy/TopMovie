@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bdjobsniloy.movieapp.entities.Genre
+import com.bdjobsniloy.movieapp.model.GenreModel
 import com.bdjobsniloy.movieapp.model.Movie
 import com.bdjobsniloy.movieapp.model.NowShowing
 import com.bdjobsniloy.movieapp.model.Popular
@@ -15,6 +17,7 @@ class MovieViewModel: ViewModel() {
     val nowShowingLD: MutableLiveData<NowShowing> = MutableLiveData()
     val popularLD: MutableLiveData<Popular> = MutableLiveData()
     val movieLD: MutableLiveData<Movie> = MutableLiveData()
+    val genreLD: MutableLiveData<GenreModel> = MutableLiveData()
 
     fun fetchNowShowing(page:Int){
 
@@ -48,6 +51,19 @@ class MovieViewModel: ViewModel() {
             try {
                 movieLD.postValue(repository.fetchMovie(movie_id))
                 Log.e("MovieViewModel", repository.fetchMovie(movie_id).toString())
+            }catch (e: Exception) {
+                Log.e("MovieViewModel", e.localizedMessage)
+            }
+        }
+
+    }
+
+    fun fetchGenreList(){
+
+        viewModelScope.launch {
+            try {
+                genreLD.postValue(repository.fetchGenre())
+                Log.e("MovieViewModel", repository.fetchGenre().toString())
             }catch (e: Exception) {
                 Log.e("MovieViewModel", e.localizedMessage)
             }

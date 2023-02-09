@@ -1,10 +1,13 @@
 package com.bdjobsniloy.movieapp
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
@@ -15,14 +18,18 @@ import androidx.viewpager2.widget.ViewPager2.ScrollState
 import com.bdjobsniloy.movieapp.adapter.NowShowingAdapter
 import com.bdjobsniloy.movieapp.adapter.PopularAdapter
 import com.bdjobsniloy.movieapp.databinding.FragmentHomeBinding
+import com.bdjobsniloy.movieapp.entities.Bookmark
+import com.bdjobsniloy.movieapp.entities.Genre
 import com.bdjobsniloy.movieapp.model.NowShowing
 import com.bdjobsniloy.movieapp.model.Popular
+import com.bdjobsniloy.movieapp.viewmodels.GenreViewModel
 import com.bdjobsniloy.movieapp.viewmodels.MovieViewModel
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding:FragmentHomeBinding
     private val movieViewModel: MovieViewModel by activityViewModels()
+    private val genreViewModel: GenreViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +44,29 @@ class HomeFragment : Fragment() {
         binding.drawerIcon.setOnClickListener{
             (activity as MainActivity).openCloseNavigationDrawer()
         }
+
+
+        //Fetch Genre
+        genreViewModel.genreExits()
+        genreViewModel.genreExitsLD.observe(viewLifecycleOwner){
+            if (it){
+
+            }else{
+                movieViewModel.fetchGenreList()
+                movieViewModel.genreLD.observe(viewLifecycleOwner) {g ->
+
+                    g.genres.forEach{
+                        val genre = Genre(
+                            id =it.id,
+                            name = it.name
+                        )
+                        genreViewModel.addGenre(genre)
+                    }
+
+                }
+            }
+        }
+
 
         //Now Showing
         val adapter = NowShowingAdapter {binding,show,position->
@@ -73,8 +103,28 @@ class HomeFragment : Fragment() {
         }
 
 
-        //Now Showing
+        //Popular
         val popularAdapter = PopularAdapter {binding,popular,position->
+
+            binding.genreLayout.removeAllViews()
+
+            popular.genre_ids.listIterator().forEach {
+                val dynamicTextview = TextView(requireActivity())
+                dynamicTextview.text = genreViewModel.getGenreName(it).value
+                dynamicTextview.setBackgroundResource(R.drawable.genre_back)
+                dynamicTextview.textSize = 10.0F
+                dynamicTextview.setTextColor(Color.parseColor("#5A6CCF"))
+
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT)
+                params.setMargins(0, 0, 10, 0)
+                dynamicTextview.layoutParams = params
+
+                binding.genreLayout.addView(dynamicTextview)
+
+
+            }
 
             binding.itemPopular.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_movieDetailsFragment,args = bundleOf("movie_id" to popular.id))
