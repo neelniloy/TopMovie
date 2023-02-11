@@ -9,7 +9,7 @@ import com.bdjobsniloy.movieapp.daos.GenreDao
 import com.bdjobsniloy.movieapp.entities.Bookmark
 import com.bdjobsniloy.movieapp.entities.Genre
 
-@Database(entities = [Bookmark::class,Genre::class], version = 2)
+@Database(entities = [Bookmark::class,Genre::class], version = 1)
 abstract class MovieDB : RoomDatabase() {
     abstract fun bookmarkDao() : BookmarkDao
     abstract fun genreDao() : GenreDao
