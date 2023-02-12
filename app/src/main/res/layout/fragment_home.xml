@@ -43,6 +43,7 @@
             android:src="@drawable/ic_notifications"/>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
             android:fillViewport="true"
             android:layout_marginTop="20dp"
             android:layout_marginStart="15dp"
@@ -55,7 +56,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -139,8 +140,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tv_popular"
-                        tools:listitem="@layout/popular_movie_item"
-                        android:nestedScrollingEnabled="false"/>
+                        tools:listitem="@layout/popular_movie_item" />
 
                     <ProgressBar
                         android:id="@+id/pProgressBar"

@@ -3,8 +3,6 @@ package com.bdjobsniloy.movieapp
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,16 +10,15 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.widget.NestedScrollView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2.ScrollState
 import com.bdjobsniloy.movieapp.adapter.NowShowingAdapter
 import com.bdjobsniloy.movieapp.adapter.PopularAdapter
 import com.bdjobsniloy.movieapp.databinding.FragmentHomeBinding
-import com.bdjobsniloy.movieapp.entities.Bookmark
 import com.bdjobsniloy.movieapp.entities.Genre
 import com.bdjobsniloy.movieapp.model.NowShowing
 import com.bdjobsniloy.movieapp.model.Popular
@@ -120,7 +117,6 @@ class HomeFragment : Fragment() {
             }
         })
 
-        nowShowingMovieList.clear()
         movieViewModel.nowShowingLD.observe(viewLifecycleOwner) {movieList ->
 
             if (movieList.results.isEmpty()) {
@@ -132,8 +128,10 @@ class HomeFragment : Fragment() {
             for (movie in movieList.results) {
                 nowShowingMovieList.add(movie)
             }
-            adapter.submitList(nowShowingMovieList)
+            adapter.submitList(nowShowingMovieList.distinct())
         }
+
+
 
 
         //Popular
@@ -186,14 +184,14 @@ class HomeFragment : Fragment() {
         }
 
         val popLayoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-        binding.popularRv.isNestedScrollingEnabled = false
         binding.popularRv.layoutManager = popLayoutManager
         binding.popularRv.adapter = popularAdapter
+        binding.popularRv.isNestedScrollingEnabled = false
 
         //Fetch
         movieViewModel.fetchPopularMovie(popularPageNum)
 
-        // RecyclerView Pagination
+/*        // RecyclerView Pagination
         binding.popularRv.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 val visibleItemCount = layoutManager.childCount
@@ -203,16 +201,31 @@ class HomeFragment : Fragment() {
                 if (!isLoadingPopular) {
 
                     if ((visibleItemCount + pastVisibleItem) >= total) {
-                        Toast.makeText(requireActivity(), "Last Page", Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(requireActivity(), "Last Page", Toast.LENGTH_SHORT).show()
                         popularPageNum++
                         movieViewModel.fetchPopularMovie(popularPageNum)
                     }
                 }
                 super.onScrolled(recyclerView, dx, dy)
             }
-        })
+        })*/
 
-        popularMovieList.clear()
+
+        binding.nestedScroll.setOnScrollChangeListener { v: NestedScrollView, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            if (v.getChildAt(v.childCount - 1) != null) {
+                if (scrollY >= v.getChildAt(v.childCount - 1)
+                        .measuredHeight - v.measuredHeight &&
+                    scrollY > oldScrollY
+                ) {
+//                    Toast.makeText(requireActivity(), "Scrolling Nested...", Toast.LENGTH_SHORT)
+//                        .show()
+                    popularPageNum++
+                    movieViewModel.fetchPopularMovie(popularPageNum)
+
+                }
+            }
+        }
+
         movieViewModel.popularLD.observe(viewLifecycleOwner) {movieList ->
 
             if (movieList.results.isEmpty()) {
@@ -220,11 +233,13 @@ class HomeFragment : Fragment() {
             } else {
                 binding.pProgressBar.visibility = View.GONE
             }
-
+            val tempList = mutableListOf<Popular.Movie>()
             for (movie in movieList.results) {
-                popularMovieList.add(movie)
+                tempList.add(movie)
             }
-            popularAdapter.submitList(popularMovieList)
+            popularMovieList.addAll(tempList)
+            popularAdapter.submitList(popularMovieList.distinct())
+            popularAdapter.notifyItemChanged(tempList.size)
         }
 
         return binding.root
